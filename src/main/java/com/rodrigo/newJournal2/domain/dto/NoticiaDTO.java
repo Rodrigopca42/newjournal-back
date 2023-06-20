@@ -37,7 +37,9 @@ public class NoticiaDTO {
 		this.id = obj.getId();
 		this.titulo = obj.getTitulo();
 		this.noticia = obj.getNoticia();
+		this.categorias = obj.getCategorias().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.dataCriacao = obj.getDataCriacao();
+		addCategoria(Categoria.ATUALIDADE);
 	}
 
 	public Integer getId() {

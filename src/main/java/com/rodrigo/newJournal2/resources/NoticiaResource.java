@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,15 +46,15 @@ public class NoticiaResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<NoticiaDTO>create(@RequestBody NoticiaDTO objDTO, @RequestParam("fileNoticia") MultipartFile file){
+	public ResponseEntity<NoticiaDTO>create(@RequestBody NoticiaDTO objDTO){
 		Noticia newObj = service.create(objDTO);		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").
 				buildAndExpand(newObj.getId()).toUri();
-		return ResponseEntity.created(uri).build();
+		return ResponseEntity.created(uri).build(); 
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<NoticiaDTO> update(@PathVariable Integer id, @RequestBody NoticiaDTO objDTO ){
+	public ResponseEntity<NoticiaDTO> update(@PathVariable Integer id, @Valid @RequestBody NoticiaDTO objDTO ){
 		Noticia obj = service.update(id,objDTO);
 		return ResponseEntity.ok().body(new NoticiaDTO(obj));
 	}
