@@ -23,7 +23,7 @@ import com.rodrigo.newJournal2.domain.dto.NoticiaDTO;
 import com.rodrigo.newJournal2.service.NoticiaService;
 
 @RestController
-@RequestMapping(value = "/novasNoticias")
+@RequestMapping(value = "/novasnoticias")
 public class NoticiaResource {
 	@Autowired
 	private NoticiaService service;
