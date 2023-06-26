@@ -3,6 +3,7 @@ package com.rodrigo.newJournal2.service;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.rodrigo.newJournal2.domain.Noticia;
@@ -20,6 +21,9 @@ public class DBService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
 	
 	
 	public void instanciaDB() {
@@ -35,7 +39,7 @@ public class DBService {
 		repository.saveAll(Arrays.asList(nj1, nj2));
 		
 		
-		Usuario us = new Usuario(null, "Rodrigo Cardoso", "rodrigo@email.com", "123");
+		Usuario us = new Usuario(null, "Rodrigo Cardoso", "rodrigo@email.com", encoder.encode("123"));
 		usuarioRepository.saveAll(Arrays.asList(us));
 	}
 	

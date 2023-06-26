@@ -14,14 +14,8 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	
-	@NotNull(message = "O campo NOME é requerido" )
 	String nome;
-	
-	@NotNull(message = "O campo EMAIL é requerido" )
 	String email;
-	
-	@NotNull(message = "O campo SENHA é requerido" )
 	String senha;
 	
 	public Usuario() {
